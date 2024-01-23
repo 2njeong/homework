@@ -1,4 +1,35 @@
-const WorkingTodo = ({ work, deleteCard, doneBtn }) => {
+const WorkingTodo = ({
+  work,
+  workingList,
+  setWorkingList,
+  doneList,
+  setDoneList,
+}) => {
+  const deleteCard = (id) => {
+    const deletedCardIndex = workingList.findIndex((todo) => id === todo.id);
+
+    const newArr = [...workingList];
+    newArr.splice(deletedCardIndex, 1);
+    setWorkingList(newArr);
+
+    localStorage.setItem("Working", JSON.stringify(newArr));
+    alert("할 일이 삭제되었습니다.");
+  };
+
+  const doneBtn = (id) => {
+    const restList = workingList.filter((todo) => id !== todo.id);
+    setWorkingList(restList);
+
+    const foundCard = workingList.find((todo) => id === todo.id);
+    const doneCard = { ...foundCard };
+    doneCard.isDone = true;
+
+    const newDoneList = [...doneList, doneCard];
+    setDoneList(newDoneList);
+    localStorage.setItem("Done", JSON.stringify(newDoneList));
+    alert("할 일을 완료하셨군요! 다음 할 일도 화이팅:)");
+  };
+
   return (
     <div key={work.id} className="card">
       <h3 id="title">
