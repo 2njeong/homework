@@ -6,14 +6,15 @@ const WorkingTodo = ({
   setDoneList,
 }) => {
   const deleteCard = (id) => {
-    const deletedCardIndex = workingList.findIndex((todo) => id === todo.id);
+    if (window.confirm("할 일을 삭제하시겠습니까?")) {
+      const deletedCardIndex = workingList.findIndex((todo) => id === todo.id);
+      alert("할 일이 삭제되었습니다.");
+      const newArr = [...workingList];
+      newArr.splice(deletedCardIndex, 1);
+      setWorkingList(newArr);
 
-    const newArr = [...workingList];
-    newArr.splice(deletedCardIndex, 1);
-    setWorkingList(newArr);
-
-    localStorage.setItem("Working", JSON.stringify(newArr));
-    alert("할 일이 삭제되었습니다.");
+      localStorage.setItem("Working", JSON.stringify(newArr));
+    }
   };
 
   const doneBtn = (id) => {

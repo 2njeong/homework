@@ -6,11 +6,12 @@ const Donetodo = ({
   setWorkingList,
 }) => {
   const deleteDoneCard = (id) => {
-    const afterDeleteArr = doneList.filter((todo) => id !== todo.id);
-    setDoneList(afterDeleteArr);
-
-    alert("todolist에서 완전히 삭제하시겠습니까?");
-    localStorage.setItem("Done", afterDeleteArr);
+    if (window.confirm("todolist에서 완전히 삭제하시겠습니까?")) {
+      alert("삭제 되었습니다.");
+      const afterDeleteArr = doneList.filter((todo) => id !== todo.id);
+      setDoneList(afterDeleteArr);
+      localStorage.setItem("Done", afterDeleteArr);
+    }
   };
 
   const cancelCard = (id) => {
