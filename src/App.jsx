@@ -45,16 +45,9 @@ function App() {
           console.log(e.target.value);
         }}
       ></input>
-      {age}
-      {filteredStudents.map((student, idx) => {
-        return (
-          <li key={idx}>
-            {student.name} <br />
-            {student.age} <br />
-            {student.grade}
-          </li>
-        );
-      })}
+      {students.map((stu, idx) =>
+        stu.age >= age ? <li key={idx}>{stu.name}</li> : ""
+      )}
     </div>
   );
 }
