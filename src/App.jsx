@@ -17,12 +17,16 @@ function App() {
       <h1>학생 목록</h1>
       {/* TODO: FilterButtons 컴포넌트를 작성하고 필요한 props를 전달하세요. */}
       <FilterButtons
-      /* 필요한 props를 여기에 전달하세요. */
+        /* 필요한 props를 여기에 전달하세요. */
+        initialStudents={initialStudents}
+        filteredStudents={filteredStudents}
+        setFilteredStudents={setFilteredStudents}
       />
 
       {/* TODO: StudentList 컴포넌트를 작성하고 필요한 props를 전달하세요. */}
       <StudentList
-      /* 필요한 props를 여기에 전달하세요. */
+        /* 필요한 props를 여기에 전달하세요. */
+        filteredStudents={filteredStudents}
       />
     </div>
   );
