@@ -17,24 +17,44 @@ function App() {
   ];
 
   const [minAge, setMinAge] = useState(18);
+  const [age, setAge] = useState(0);
 
   // TODO: filter를 사용하여 minAge 이상의 학생들만 선택하세요.
   const filteredStudents = students.filter((student) => student.age >= minAge);
 
   // TODO: map을 사용하여 필터링된 학생들의 정보를 표시하세요.
-  const studentList = filteredStudents.map((student, index) => (
-    <li key={index}>
-      {student.name} - Age: {student.age}, Grade: {student.grade}
-    </li>
-  ));
+  filteredStudents.map((student, idx) => {
+    return (
+      <li key={idx}>
+        {student.name} <br />
+        {student.age} <br />
+        {student.grade}
+      </li>
+    );
+  });
 
   return (
     <div>
       <h1>학생 목록</h1>
       다음 나이 이상의 학생목록만 출력해요 :{" "}
       {/* TODO: input에 입력된 값(숫자) 이상의 나이를 가진 학생들만 출력하세요. */}
-      <input type="number" /> 살 이상
-      <ul>{studentList}</ul>
+      <input
+        value={age}
+        onChange={(e) => {
+          setAge(e.target.value);
+          console.log(e.target.value);
+        }}
+      ></input>
+      {age}
+      {filteredStudents.map((student, idx) => {
+        return (
+          <li key={idx}>
+            {student.name} <br />
+            {student.age} <br />
+            {student.grade}
+          </li>
+        );
+      })}
     </div>
   );
 }
